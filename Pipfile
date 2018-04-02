@@ -1,0 +1,20 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+dj-database-url = "==0.5.0"
+dj-static = "==0.0.6"
+Django = "==2.0.3"
+django-toolbelt = "==0.0.1"
+gunicorn = "*"
+"psycopg2" = "==2.7.4"
+PyMySQL = "==0.8.0"
+pytz = "==2018.3"
+"static3" = "==0.7.0"
+
+[dev-packages]
+
+[requires]
+python_version = "3.6"
