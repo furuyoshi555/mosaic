@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- <script src="zooming/build/zooming.min.js"></script> -->
+    <!-- <link href="{% static 'mosaic_app/js/jquery-3.2.1.min.js' %}" rel="stylesheet"> -->
+    <script type="text/javascript">
+
+        window.onload = function(){
+            Chgsize(-0.5);
+        }
+
+        var Ftsize = 1;
+        function Chgsize(Vle) {
+            console.log(Vle)
+            Ftsize = Ftsize + Vle;
+            console.log(Ftsize)
+            if(Vle == "0") Ftsize = 0.5;
+            window.parent.document.getElementById("d").style.zoom = Ftsize;
+            
+        }
+    </script>
+    <style>
+        .buttons{
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+        }
+        body, html {
+            height: 100%;
+            margin: 0;
+        }
+        
+        .bg {
+            /* The image used */
+            /*background-image: url("{{ full_screen_mosaic_art.mosaic_art.url }}");*/
+        
+            /* Full height */
+            /*height: 100%; */
+            
+            /* Center and scale the image nicely */
+            /*background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;*/
+        }
+    </style>
+</head>
+<body>
+    <!-- <div ></div> -->
+    <!-- <div  style="height: 100%"> -->
+    <div id="d" class="bg" style="text-align: center;">
+        <img src="{{ full_screen_mosaic_art.mosaic_art.url }}" alt=""  data-action="zoom">
+    </div>
+    <!-- </div> -->
+    <div class="buttons">
+        <input type="button" value="縮小" onclick="Chgsize(-1)" style="width: 100px; height: 40px;">
+        <input type="button" value="元の大きさ" onclick="Chgsize(0)" style="width: 100px; height: 40px;">
+        <input type="button" value="拡大" onclick="Chgsize(+4)" style="width: 100px; height: 40px;">
+    </div>
+
+
+</body>
+</html>

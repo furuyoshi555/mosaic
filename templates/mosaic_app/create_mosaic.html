@@ -1,0 +1,86 @@
+{% extends "mosaic_app/base.html" %}
+
+{% block body_block %}
+{% load static %}
+
+<div class="container" style="margin-top: 80px;">
+    <div class="">
+        <a href="{{ auth_uri }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" target="_blank" style="background: green;">Tokenを取得する</a>
+        {% comment %} <a href="{{ auth_uri }}" target="_blank">Token</a> {% endcomment %}
+    </div>
+
+    {% comment %} <form enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        {{ form.label }}
+        {{ form }}
+        <input type="submit" name="button1" value="送信"/>
+    </form> {% endcomment %}
+
+
+    <form enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="exampleInputPassword1">{{ form.label }}</label>
+            {{ form }}
+        </div>
+        {% comment %} <input type="submit" name="button1" value="送信"/> {% endcomment %}
+        <button type="submit" name="button1" class="btn btn-primary">アルバムリストを表示</button>
+    </form>
+</div>
+
+
+
+<section id="team" class="light-bg">
+		<div class="container">
+				<div class="row row-eq-height">
+                    <!-- team member item -->
+                    {% for album in album_list %}
+                        <div class="col-md-4 center-block row-eq-height">
+                            <div class="team-item">
+                                <div class="team-image">
+                                    <img src="{{ album.2 }}" class="img-responsive" alt="author">
+                                    {% comment %} <img src="images/demo/author-2.jpg" class="img-responsive" alt="author"> {% endcomment %}
+                                </div>
+                                <div class="team-text">
+                                    <h3>{{ album.0 }}</h3>
+                                    {% comment %} <div class="team-position">CEO & Web Design</div> {% endcomment %}
+                                    <h3>{{ album.1 }}</h3>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+				</div>
+		</div> 
+</section>
+
+
+    {% comment %} {% for album in album_list %}
+        <img src="{{ album.2 }}" alt="">
+        <h3>{{ album.0 }}.{{ album.1 }}</h3><br><br>
+            
+    {% endfor %} {% endcomment %}
+
+    {% comment %} <form enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        <label for="">{{ main_image.label }}</label>
+        {{ main_image }}
+        <label for="">{{ album_num.label}}</label>
+        {{ album_num }}
+        <input type="submit" name="button2" value="送信"/>
+    </form> {% endcomment %}
+<div class="container">
+    <form enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="exampleInputEmail1">{{ main_image.label }}</label>
+            {{ main_image }}
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">{{ album_num.label}}</label>
+            {{ album_num }}
+        </div>
+        <button type="submit" name="button2" class="btn btn-primary">モザイクアートを作成</button>
+    </form>
+</div>
+
+{% endblock %}

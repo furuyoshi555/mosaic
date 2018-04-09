@@ -13,9 +13,34 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url,include
 from django.contrib import admin
+from django.conf.urls.static import static
+from mosaic_app import views
+from django.conf import settings
+
 
 urlpatterns = [
+    url(r"^$",views.index,name="index"),
     url(r'^admin/', admin.site.urls),
-]
+    url(r"^mosaic_app/",include("mosaic_app.urls")),
+    # url(r"^mosaic_app/(?P<mosaic_id>[0-9]+)/$", views.full_screen, name="full_screen"),
+    url(r'^auth/', include('social_django.urls', namespace='social')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns = [
+        url(r"^__debug__/",include(debug_toolbar.urls))
+    ] + urlpatterns
+
+
+# urlpatterns = [
+#     url(r"^$",views.index,name="index"),
+#     url(r'^login/$', views.login, name='login'),
+#     url('', include('social.apps.django_app.urls', namespace='social')),
+#     url('', include('django.contrib.auth.urls', namespace='auth')),
+#     url(r'^auth/', include('social_django.urls', namespace='social')), 
+#     url(r'^admin/', admin.site.urls),
+# ]

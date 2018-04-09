@@ -1,0 +1,15 @@
+{% extends "mosaic_app/base.html" %}
+
+{% block body_block %}
+    <h1>ログイン成功だ！</h1>
+    {% if user.is_authenticated %}
+            <p class="display-4">Hello, {{ user }}</p>
+            <p class="display-4">Hello, {{ user.id }}</p>
+            <p class="display-4">Hello, {{ user.first_name }}</p>
+            <p class="display-4">Hello, {{ user.email }}</p>
+            <p class="display-4">Hello, {{ user.last_name }}</p>
+
+	{% else %}
+             <a class="lead" href="{% url 'login' %}">Log in</a>
+	{% endif %}
+{% endblock %}

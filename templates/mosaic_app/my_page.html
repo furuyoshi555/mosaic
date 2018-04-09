@@ -1,0 +1,53 @@
+{% extends "mosaic_app/base.html" %}
+
+{% block body_block %}
+{% load static %}
+{% comment %} <img src="{% static 'mosaic_arts/mosaic25.png'%}" class = "img-fluid rounded" style="max-height: 1000px;" /> {% endcomment %}
+
+
+
+<section id="portfolio" class="light-bg" style="margin-top: 80px;">
+        <div class="container">
+            <div class="row row-0-gutter">
+                <!-- start portfolio item -->
+                {% for main_image in main_images %}
+                <div class="col-md-4 col-0-gutter">
+                    <div class="ot-portfolio-item">
+                        <figure class="effect-bubba">
+                            <img src="{{ main_image.main_image.url }}" alt="img02" class="img-responsive" />
+                            <figcaption>
+                                <h2>Dean & Letter</h2>
+                                <p>Branding, Design</p>
+                                <a href="#" data-toggle="modal" data-target="#Modal-{{ forloop.counter }}">View more</a>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+                {% endfor %}
+                <!-- end portfolio item -->
+            </div>
+        </div><!-- end container -->
+    </section>
+    {% for mosaic_art in mosaic_arts %}
+	<!-- Modal for portfolio item 1 -->
+	<div class="modal fade" id="Modal-{{ forloop.counter }}" tabindex="-1" role="dialog" aria-labelledby="Modal-label-1">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="Modal-label-1">Dean & Letter</h4>
+				</div>
+				<div class="modal-body">
+					<img src="{{ mosaic_art.mosaic_art.url }}" alt="img01" class="img-responsive" />
+                    <!-- <div class="modal-works"><span>Full Screen</span><span>Download</span><span>Delete</span></div> -->
+                    <a href="{% url 'full_screen' mosaic_art.id %}" target=”_blank”>Full Screen</a>
+					<p>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+    {% endfor %}
+{% endblock %}
