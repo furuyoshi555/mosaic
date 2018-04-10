@@ -25,7 +25,7 @@ MEDIA_DIR = os.path.join(BASE_DIR,"media")
 SECRET_KEY = 'l#o20hu=#1!k0xk_4sap)*^ye_fiqsdgpo-@foczke79e%iza3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'social.apps.django_app.default',
     # "debug_toolbar",
     "mosaic_app",
+    'gunicorn',
 ]
 
 # MIDDLEWARE = [
