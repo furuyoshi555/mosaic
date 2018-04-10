@@ -25,7 +25,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r"^mosaic_app/",include("mosaic_app.urls")),
     # url(r"^mosaic_app/(?P<mosaic_id>[0-9]+)/$", views.full_screen, name="full_screen"),
-    url(r'^auth/', include('social.apps.django_app.urls', namespace='social')),
+    url(r'^auth/', include('social_django.urls', namespace='social')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

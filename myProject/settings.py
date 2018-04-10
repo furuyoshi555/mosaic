@@ -39,33 +39,33 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # "social_django",
-    'social.apps.django_app.default',
+    "social_django",
+    # 'social.apps.django_app.default',
     # "debug_toolbar",
     "mosaic_app",
 ]
 
-MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # "debug_toolbar.middleware.DebugToolbarMiddleware",
-]
-
 # MIDDLEWARE = [
-#     'social_django.middleware.security.SecurityMiddleware',
-#     'social_django.contrib.sessions.middleware.SessionMiddleware',
-#     'social_django.middleware.common.CommonMiddleware',
-#     'social_django.middleware.csrf.CsrfViewMiddleware',
-#     'social_django.contrib.auth.middleware.AuthenticationMiddleware',
-#     'social_django.contrib.messages.middleware.MessageMiddleware',
-#     'social_django.middleware.clickjacking.XFrameOptionsMiddleware',
+#     'django.middleware.security.SecurityMiddleware',
+#     'django.contrib.sessions.middleware.SessionMiddleware',
+#     'django.middleware.common.CommonMiddleware',
+#     'django.middleware.csrf.CsrfViewMiddleware',
+#     'django.contrib.auth.middleware.AuthenticationMiddleware',
+#     'django.contrib.messages.middleware.MessageMiddleware',
+#     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 #     # "debug_toolbar.middleware.DebugToolbarMiddleware",
 # ]
+
+MIDDLEWARE = [
+    'social_django.middleware.security.SecurityMiddleware',
+    'social_django.contrib.sessions.middleware.SessionMiddleware',
+    'social_django.middleware.common.CommonMiddleware',
+    'social_django.middleware.csrf.CsrfViewMiddleware',
+    'social_django.contrib.auth.middleware.AuthenticationMiddleware',
+    'social_django.contrib.messages.middleware.MessageMiddleware',
+    'social_django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # "debug_toolbar.middleware.DebugToolbarMiddleware",
+]
 
 ROOT_URLCONF = 'myProject.urls'
 
@@ -76,10 +76,10 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+                'social_django.template.context_processors.debug',
+                'social_django.template.context_processors.request',
+                'social_django.contrib.auth.context_processors.auth',
+                'social_django.contrib.messages.context_processors.messages',
                 'social_django.context_processors.backends',
                 'social_django.context_processors.login_redirect',
             ],
