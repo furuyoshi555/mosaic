@@ -1,1 +1,1 @@
-web: gunicorn myDjango.wsgi --log-file -
+web: gunicorn --env DJANGO_SETTINGS_MODULE=portfolio.settings portfolio.wsgi --log-file -
