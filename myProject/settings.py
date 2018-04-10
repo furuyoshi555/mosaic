@@ -45,27 +45,27 @@ INSTALLED_APPS = [
     "mosaic_app",
 ]
 
-# MIDDLEWARE = [
-#     'django.middleware.security.SecurityMiddleware',
-#     'django.contrib.sessions.middleware.SessionMiddleware',
-#     'django.middleware.common.CommonMiddleware',
-#     'django.middleware.csrf.CsrfViewMiddleware',
-#     'django.contrib.auth.middleware.AuthenticationMiddleware',
-#     'django.contrib.messages.middleware.MessageMiddleware',
-#     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-#     # "debug_toolbar.middleware.DebugToolbarMiddleware",
-# ]
-
 MIDDLEWARE = [
-    'social_django.middleware.security.SecurityMiddleware',
-    'social_django.contrib.sessions.middleware.SessionMiddleware',
-    'social_django.middleware.common.CommonMiddleware',
-    'social_django.middleware.csrf.CsrfViewMiddleware',
-    'social_django.contrib.auth.middleware.AuthenticationMiddleware',
-    'social_django.contrib.messages.middleware.MessageMiddleware',
-    'social_django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
+
+# MIDDLEWARE = [
+#     'social_django.middleware.security.SecurityMiddleware',
+#     'social_django.contrib.sessions.middleware.SessionMiddleware',
+#     'social_django.middleware.common.CommonMiddleware',
+#     'social_django.middleware.csrf.CsrfViewMiddleware',
+#     'social_django.contrib.auth.middleware.AuthenticationMiddleware',
+#     'social_django.contrib.messages.middleware.MessageMiddleware',
+#     'social_django.middleware.clickjacking.XFrameOptionsMiddleware',
+#     # "debug_toolbar.middleware.DebugToolbarMiddleware",
+# ]
 
 ROOT_URLCONF = 'myProject.urls'
 
