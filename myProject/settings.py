@@ -71,7 +71,7 @@ ROOT_URLCONF = 'myProject.urls'
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'BACKEND': 'social_core.template.backends.django.DjangoTemplates',
         'DIRS': [TEMPLATE_DIR,],
         'APP_DIRS': True,
         'OPTIONS': {
