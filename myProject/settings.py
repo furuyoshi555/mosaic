@@ -27,7 +27,6 @@ SECRET_KEY = 'l#o20hu=#1!k0xk_4sap)*^ye_fiqsdgpo-@foczke79e%iza3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -194,6 +193,12 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
+
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
 
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='654310236132-9jqqbijnc1bsua10bs8056fq4o1fbnmm.apps.googleusercontent.com'
