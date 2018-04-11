@@ -234,25 +234,10 @@ def create_mosaic(request):
                         # m.user_id.save(request.user.id)
                 m.save()
                 return redirect(my_page)  
-                                         
-                
-                # try:
-                #     m = MosaicArtInfo.objects.create(user_id=request.user.id)
-                #     g = ImageFile(open("static/mosaic_app/images/mosaic_arts/" + datetime_for_path + ".png","rb"))
-                #     m.mosaic_art.save( datetime_for_path +'.png',g)
-                #     m.save()
-                # except TypeError:
-                #     redirect(index)
-                
-       
                   
     else:
         image_form = MainImageForm()
         album_num = AlbumNumberForm()
-
-
-
-
     
     return render(request,"mosaic_app/create_mosaic.html",{
                                                             "album_list":album_list,

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -27,6 +28,7 @@ SECRET_KEY = 'l#o20hu=#1!k0xk_4sap)*^ye_fiqsdgpo-@foczke79e%iza3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
+ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
 
 
 # Application definition
@@ -38,48 +40,36 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # "social_django",
     'social.apps.django_app.default',
-    # "debug_toolbar",
+    "debug_toolbar",
+    "social_django",
     "mosaic_app",
-    'gunicorn',
 ]
 
-# MIDDLEWARE = [
-#     'django.middleware.security.SecurityMiddleware',
-#     'django.contrib.sessions.middleware.SessionMiddleware',
-#     'django.middleware.common.CommonMiddleware',
-#     'django.middleware.csrf.CsrfViewMiddleware',
-#     'django.contrib.auth.middleware.AuthenticationMiddleware',
-#     'django.contrib.messages.middleware.MessageMiddleware',
-#     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-#     # "debug_toolbar.middleware.DebugToolbarMiddleware",
-# ]
-
 MIDDLEWARE = [
-    'social_django.middleware.security.SecurityMiddleware',
-    'social_django.contrib.sessions.middleware.SessionMiddleware',
-    'social_django.middleware.common.CommonMiddleware',
-    'social_django.middleware.csrf.CsrfViewMiddleware',
-    'social_django.contrib.auth.middleware.AuthenticationMiddleware',
-    'social_django.contrib.messages.middleware.MessageMiddleware',
-    'social_django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # "debug_toolbar.middleware.DebugToolbarMiddleware",
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = 'myProject.urls'
 
 TEMPLATES = [
     {
-        'BACKEND': 'social_core.template.backends.django.DjangoTemplates',
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [TEMPLATE_DIR,],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
-                'social_django.template.context_processors.debug',
-                'social_django.template.context_processors.request',
-                'social_django.contrib.auth.context_processors.auth',
-                'social_django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
                 'social_django.context_processors.backends',
                 'social_django.context_processors.login_redirect',
             ],
@@ -170,7 +160,7 @@ LOGIN_REDIRECT_URL = 'my_page'
 LOGOUT_REDIRECT_URL = "index"
 
 
-# INTERNAL_IPS = ["127.0.0.1"]
+INTERNAL_IPS = ["127.0.0.1"]
 
 
 AUTHENTICATION_BACKENDS = (
@@ -184,8 +174,11 @@ AUTHENTICATION_BACKENDS = (
 )
 
 # Parse database configuration from $DATABASE_URL
-import dj_database_url
-db_from_env = dj_database_url.config()
+# import dj_database_url
+# db_from_env = dj_database_url.config()
+# DATABASES['default'].update(db_from_env)
+
+db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
@@ -193,12 +186,6 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
-
-
-try:
-    from .local_settings import *
-except ImportError:
-    pass
 
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='654310236132-9jqqbijnc1bsua10bs8056fq4o1fbnmm.apps.googleusercontent.com'
