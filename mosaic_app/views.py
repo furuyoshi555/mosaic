@@ -89,7 +89,7 @@ def create_mosaic(request):
     now=datetime.datetime.now()
     datetime_for_path = str(now.year)+str(now.month)+str(now.day)+str(now.hour)+str(now.minute)+str(now.second)
 
-    
+    new_dir_path = "static/mosaic_app/images/thumbnail_images/"
 
     # user_id = request.user.id
     # request.session["user-id"] = user_id
@@ -178,15 +178,15 @@ def create_mosaic(request):
                 # os.mkdir("static/mosaic_app/images/thumbnail_images/"+ datetime_for_path)
 
                 # thumbnail_path = "static/mosaic_app/images/thumbnail_images/"
-                new_dir_path = "static/mosaic_app/images/thumbnail_images/"
+                
                 
                 for i in range(album_image_count):
                     images_urls = json_data["feed"]["entry"][i]['media:group']['media:content']['@url']
-                    base = os.path.basename(images_urls)
-                    dst_path = os.path.join(new_dir_path, base)
+                    # base = os.path.basename(images_urls)
+                    # dst_path = os.path.join(new_dir_path, base)
 
-                    for path in dst_path:
-                        thumbnail_images_path.append(path)
+                    # for path in dst_path:
+                    #     thumbnail_images_path.append(path)
 
                     f = io.BytesIO(urllib.request.urlopen(images_urls).read())
                     img = Image.open(f)
