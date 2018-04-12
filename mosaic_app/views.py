@@ -247,6 +247,7 @@ def create_mosaic(request):
                 m.mosaic_art.save( datetime_for_path +'.png',g)
                         # m.user_id.save(request.user.id)
                 m.save()
+                os.remove("static/mosaic_app/images/mosaic_arts/" + datetime_for_path + ".png")
                 return redirect(my_page)  
                   
     else:
