@@ -103,7 +103,8 @@ def create_mosaic(request):
         )
 
     auth_uri = flow.step1_get_authorize_url()
-    
+
+    thumbnail_images_path = []
 
     album_dict = []
     album_list = []
@@ -174,16 +175,25 @@ def create_mosaic(request):
                 x_dict = xmltodict.parse(images_xml_data)
                 json_data = json.loads(json.dumps(x_dict, indent=4))
                 album_image_count = len(json_data["feed"]["entry"])
-                os.mkdir("static/mosaic_app/images/thumbnail_images/"+ datetime_for_path)
-                new_dir_path = "static/mosaic_app/images/thumbnail_images/"+ datetime_for_path + "/"
+                # os.mkdir("static/mosaic_app/images/thumbnail_images/"+ datetime_for_path)
+
+                # thumbnail_path = "static/mosaic_app/images/thumbnail_images/"
+                new_dir_path = "static/mosaic_app/images/thumbnail_images/"
+                
                 for i in range(album_image_count):
                     images_urls = json_data["feed"]["entry"][i]['media:group']['media:content']['@url']
                     base = os.path.basename(images_urls)
                     dst_path = os.path.join(new_dir_path, base)
+
+                    for path in dst_path:
+                        thumbnail_images_path.append(path)
+
                     f = io.BytesIO(urllib.request.urlopen(images_urls).read())
                     img = Image.open(f)
                     resize_im = img.resize((int(300),int(200)))
                     resize_im.save(new_dir_path + str(i) + ".jpg","JPEG")
+                
+                
 
                 data_list = []
                 for image_name in os.listdir(new_dir_path):
@@ -223,9 +233,13 @@ def create_mosaic(request):
                         area_im.thumbnail((THUMBNAIL_WIDTH_SIDE, THUMBNAIL_HEIGHT_SIDE))
                         mosaic_icon_im.paste(area_im, (left//DOT_AREA_WIDTH_SIDE * THUMBNAIL_WIDTH_SIDE,
                                                                 top//DOT_AREA_HEIGHT_SIDE * THUMBNAIL_HEIGHT_SIDE))
+                        
 
                 mosaic_icon_im.save("static/mosaic_app/images/mosaic_arts/" + datetime_for_path + ".png", "PNG")
-                shutil.rmtree(new_dir_path)
+                # shutil.rmtree(new_dir_path)
+                for thumbnail_images_path in os.listdir(new_dir_path):
+                    # print("static/mosaic_app/images/thumbnail_images/"+thumbnail_images_path)
+                    os.remove("static/mosaic_app/images/thumbnail_images/"+thumbnail_images_path)
 
 
                 m = MosaicArtInfo.objects.create(user_id=request.user.id)
