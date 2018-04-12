@@ -174,8 +174,8 @@ def create_mosaic(request):
                 x_dict = xmltodict.parse(images_xml_data)
                 json_data = json.loads(json.dumps(x_dict, indent=4))
                 album_image_count = len(json_data["feed"]["entry"])
-                os.mkdir("media/thumbnail_images/"+ datetime_for_path)
-                new_dir_path = "media/thumbnail_images/"+ datetime_for_path + "/"
+                os.mkdir("https://rhubarb-pie-95237.herokuapp.com/media/thumbnail_images/"+ datetime_for_path)
+                new_dir_path = "https://rhubarb-pie-95237.herokuapp.com/media/thumbnail_images/"+ datetime_for_path + "/"
                 for i in range(album_image_count):
                     images_urls = json_data["feed"]["entry"][i]['media:group']['media:content']['@url']
                     base = os.path.basename(images_urls)
@@ -224,12 +224,12 @@ def create_mosaic(request):
                         mosaic_icon_im.paste(area_im, (left//DOT_AREA_WIDTH_SIDE * THUMBNAIL_WIDTH_SIDE,
                                                                 top//DOT_AREA_HEIGHT_SIDE * THUMBNAIL_HEIGHT_SIDE))
 
-                mosaic_icon_im.save("static/mosaic_app/images/mosaic_arts/" + datetime_for_path + ".png", "PNG")
+                mosaic_icon_im.save("https://rhubarb-pie-95237.herokuapp.com/static/mosaic_app/images/mosaic_arts/" + datetime_for_path + ".png", "PNG")
                 shutil.rmtree(new_dir_path)
 
 
                 m = MosaicArtInfo.objects.create(user_id=request.user.id)
-                g = ImageFile(open("static/mosaic_app/images/mosaic_arts/" + datetime_for_path + ".png","rb"))
+                g = ImageFile(open("https://rhubarb-pie-95237.herokuapp.com/static/mosaic_app/images/mosaic_arts/" + datetime_for_path + ".png","rb"))
                 m.mosaic_art.save( datetime_for_path +'.png',g)
                         # m.user_id.save(request.user.id)
                 m.save()
