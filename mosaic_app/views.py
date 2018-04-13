@@ -2,6 +2,7 @@ from django.shortcuts import render,render_to_response,redirect,get_object_or_40
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.conf.settings import BASE_DIR
 from django.template import RequestContext
 from django import forms
 from django.core.files import File
@@ -178,8 +179,8 @@ def create_mosaic(request):
                 json_data = json.loads(json.dumps(x_dict, indent=4))
                 album_image_count = len(json_data["feed"]["entry"])
                 # for_thumbnail_dir_path = "static/mosaic_app/images/thumbnail_images/"+ datetime_for_path
-                os.mkdir("/static/mosaic_app/images/thumbnail_images/"+ datetime_for_path)
-                new_dir_path = "/static/mosaic_app/images/thumbnail_images/"+ datetime_for_path + "/"
+                os.mkdir(BASE_DIR + "/static/mosaic_app/images/thumbnail_images/"+ datetime_for_path)
+                new_dir_path = BASE_DIR + "/static/mosaic_app/images/thumbnail_images/"+ datetime_for_path + "/"
                 for i in range(album_image_count):
                     images_urls = json_data["feed"]["entry"][i]['media:group']['media:content']['@url']
                     base = os.path.basename(images_urls)
@@ -228,12 +229,12 @@ def create_mosaic(request):
                         mosaic_icon_im.paste(area_im, (left//DOT_AREA_WIDTH_SIDE * THUMBNAIL_WIDTH_SIDE,
                                                                 top//DOT_AREA_HEIGHT_SIDE * THUMBNAIL_HEIGHT_SIDE))
 
-                mosaic_icon_im.save("/static/mosaic_app/images/mosaic_arts/" + datetime_for_path + ".png", "PNG")
+                mosaic_icon_im.save(BASE_DIR + "/static/mosaic_app/images/mosaic_arts/" + datetime_for_path + ".png", "PNG")
                 shutil.rmtree(new_dir_path)
 
 
                 m = MosaicArtInfo.objects.create(user_id=request.user.id)
-                g = ImageFile(open("/static/mosaic_app/images/mosaic_arts/" + datetime_for_path + ".png","rb"))
+                g = ImageFile(open(BASE_DIR + "/static/mosaic_app/images/mosaic_arts/" + datetime_for_path + ".png","rb"))
                 m.mosaic_art.save( datetime_for_path +'.png',g)
                         # m.user_id.save(request.user.id)
                 m.save()
