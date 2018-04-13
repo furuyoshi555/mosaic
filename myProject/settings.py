@@ -28,7 +28,7 @@ SECRET_KEY = 'l#o20hu=#1!k0xk_4sap)*^ye_fiqsdgpo-@foczke79e%iza3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
+# ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
 
 
 # Application definition
@@ -185,7 +185,7 @@ DATABASES['default'].update(db_from_env)
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Allow all host headers
-# ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*']
 
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='654310236132-jarkdd20lhjojpbaho1vss3prl53evpo.apps.googleusercontent.com'
