@@ -90,29 +90,14 @@ def create_mosaic(request):
     now=datetime.datetime.now()
     datetime_for_path = str(now.year)+str(now.month)+str(now.day)+str(now.hour)+str(now.minute)+str(now.second)
 
-    
+
+  
 
     # user_id = request.user.id
     # request.session["user-id"] = user_id
 
     user_choice_album_title = ""
     # get access_token
-    # flow = flow_from_clientsecrets(
-    #     'static/secret/client_secrets.json',
-    #     scope='https://picasaweb.google.com/data/',
-    #     redirect_uri="urn:ietf:wg:oauth:2.0:oob"
-    #     )
-
-    # flow = flow_from_clientsecrets(
-    #     'static/secret/client_secrets.json',
-    #     scope='https://picasaweb.google.com/data/',
-    #     redirect_uri="https://rhubarb-pie-95237.herokuapp.com/auth/complete/google-oauth2/"
-    #     )
-
-    # flow = OAuth2WebServerFlow(client_id='654310236132-jarkdd20lhjojpbaho1vss3prl53evpo.apps.googleusercontent.com',
-    #                        client_secret='hXjKA0z87BtOT_AhF_f7xnHU',
-    #                        scope='https://picasaweb.google.com/data/',
-    #                        redirect_uri='https://rhubarb-pie-95237.herokuapp.com/auth/complete/google-oauth2/')
 
     flow = OAuth2WebServerFlow(client_id='654310236132-9jqqbijnc1bsua10bs8056fq4o1fbnmm.apps.googleusercontent.com',
                            client_secret='zKXijCUymadRKVcV5sr3SL3c',
@@ -192,6 +177,7 @@ def create_mosaic(request):
                 x_dict = xmltodict.parse(images_xml_data)
                 json_data = json.loads(json.dumps(x_dict, indent=4))
                 album_image_count = len(json_data["feed"]["entry"])
+                # for_thumbnail_dir_path = "static/mosaic_app/images/thumbnail_images/"+ datetime_for_path
                 os.mkdir("static/mosaic_app/images/thumbnail_images/"+ datetime_for_path)
                 new_dir_path = "static/mosaic_app/images/thumbnail_images/"+ datetime_for_path + "/"
                 for i in range(album_image_count):
@@ -251,7 +237,6 @@ def create_mosaic(request):
                 m.mosaic_art.save( datetime_for_path +'.png',g)
                         # m.user_id.save(request.user.id)
                 m.save()
-                os.remove("static/mosaic_app/images/mosaic_arts/" + datetime_for_path + ".png")
                 return redirect(my_page)  
                   
     else:
