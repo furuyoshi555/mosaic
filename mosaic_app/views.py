@@ -2,7 +2,7 @@ from django.shortcuts import render,render_to_response,redirect,get_object_or_40
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.conf.settings import BASE_DIR
+from myProject.settings import BASE_DIR
 from django.template import RequestContext
 from django import forms
 from django.core.files import File
