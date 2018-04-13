@@ -105,7 +105,7 @@ def create_mosaic(request):
     flow = flow_from_clientsecrets(
         'static/secret/client_secrets.json',
         scope='https://picasaweb.google.com/data/',
-        redirect_uri="https://rhubarb-pie-95237.herokuapp.com/auth_return/"
+        redirect_uri="https://rhubarb-pie-95237.herokuapp.com/auth/complete/google-oauth2/"
         )
 
     auth_uri = flow.step1_get_authorize_url()
