@@ -109,10 +109,16 @@ def create_mosaic(request):
     #     redirect_uri="https://rhubarb-pie-95237.herokuapp.com/auth/complete/google-oauth2/"
     #     )
 
-    flow = OAuth2WebServerFlow(client_id='654310236132-jarkdd20lhjojpbaho1vss3prl53evpo.apps.googleusercontent.com',
-                           client_secret='hXjKA0z87BtOT_AhF_f7xnHU',
+    # flow = OAuth2WebServerFlow(client_id='654310236132-jarkdd20lhjojpbaho1vss3prl53evpo.apps.googleusercontent.com',
+    #                        client_secret='hXjKA0z87BtOT_AhF_f7xnHU',
+    #                        scope='https://picasaweb.google.com/data/',
+    #                        redirect_uri='https://rhubarb-pie-95237.herokuapp.com/auth/complete/google-oauth2/')
+
+      flow = OAuth2WebServerFlow(client_id='654310236132-9jqqbijnc1bsua10bs8056fq4o1fbnmm.apps.googleusercontent.com',
+                           client_secret='zKXijCUymadRKVcV5sr3SL3c',
                            scope='https://picasaweb.google.com/data/',
-                           redirect_uri='https://rhubarb-pie-95237.herokuapp.com/auth/complete/google-oauth2/')
+                           redirect_uri='urn:ietf:wg:oauth:2.0:oob')
+
 
     auth_uri = flow.step1_get_authorize_url()
     
