@@ -14,6 +14,7 @@ from io import BytesIO
 import json
 from mosaic_app.models import MainImageInfo,MosaicArtInfo
 from mosaic_app.forms import AuthorizationTokenForm,MainImageForm,AlbumNumberForm
+from oauth2client.client import OAuth2WebServerFlow
 from oauth2client.client import flow_from_clientsecrets
 from oauth2client.file import Storage
 import os
@@ -102,11 +103,16 @@ def create_mosaic(request):
     #     redirect_uri="urn:ietf:wg:oauth:2.0:oob"
     #     )
 
-    flow = flow_from_clientsecrets(
-        'static/secret/client_secrets.json',
-        scope='https://picasaweb.google.com/data/',
-        redirect_uri="https://rhubarb-pie-95237.herokuapp.com/auth/complete/google-oauth2/"
-        )
+    # flow = flow_from_clientsecrets(
+    #     'static/secret/client_secrets.json',
+    #     scope='https://picasaweb.google.com/data/',
+    #     redirect_uri="https://rhubarb-pie-95237.herokuapp.com/auth/complete/google-oauth2/"
+    #     )
+
+    flow = OAuth2WebServerFlow(client_id='654310236132-jarkdd20lhjojpbaho1vss3prl53evpo.apps.googleusercontent.com',
+                           client_secret='hXjKA0z87BtOT_AhF_f7xnHU',
+                           scope='https://picasaweb.google.com/data/',
+                           redirect_uri='https://rhubarb-pie-95237.herokuapp.com/auth/complete/google-oauth2/')
 
     auth_uri = flow.step1_get_authorize_url()
     
