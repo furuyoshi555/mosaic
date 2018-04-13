@@ -96,10 +96,16 @@ def create_mosaic(request):
 
     user_choice_album_title = ""
     # get access_token
+    # flow = flow_from_clientsecrets(
+    #     'static/secret/client_secrets.json',
+    #     scope='https://picasaweb.google.com/data/',
+    #     redirect_uri="urn:ietf:wg:oauth:2.0:oob"
+    #     )
+
     flow = flow_from_clientsecrets(
         'static/secret/client_secrets.json',
         scope='https://picasaweb.google.com/data/',
-        redirect_uri="https://rhubarb-pie-95237.herokuapp.com/auth/complete/google-oauth2/"
+        redirect_uri="https://rhubarb-pie-95237.herokuapp.com/auth_return/"
         )
 
     auth_uri = flow.step1_get_authorize_url()
