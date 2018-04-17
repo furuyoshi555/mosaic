@@ -28,7 +28,7 @@ SECRET_KEY = 'l#o20hu=#1!k0xk_4sap)*^ye_fiqsdgpo-@foczke79e%iza3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
 
 
 # Application definition
@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'social.apps.django_app.default',
-    "debug_toolbar",
+    # "debug_toolbar",
     "social_django",
     "mosaic_app",
 ]
@@ -54,7 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "debug_toolbar.middleware.DebugToolbarMiddleware",
+    # "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = 'myProject.urls'
@@ -156,7 +156,7 @@ MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = "/media/"
 
 LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = 'my_page'
+LOGIN_REDIRECT_URL = 'create_mosaic'
 LOGOUT_REDIRECT_URL = "index"
 
 
@@ -185,8 +185,12 @@ DATABASES['default'].update(db_from_env)
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Allow all host headers
-ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['*']
 
-
+# for heroku
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='654310236132-jarkdd20lhjojpbaho1vss3prl53evpo.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'hXjKA0z87BtOT_AhF_f7xnHU'
+
+# for local
+# SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='654310236132-9jqqbijnc1bsua10bs8056fq4o1fbnmm.apps.googleusercontent.com'
+# SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'zKXijCUymadRKVcV5sr3SL3c'

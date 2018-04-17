@@ -100,6 +100,15 @@ def create_mosaic(request):
     user_choice_album_title = ""
     # get access_token
 
+
+
+    # for local
+    # flow = flow_from_clientsecrets('path_to_directory/client_secrets.json',
+    #                            scope='https://www.googleapis.com/auth/calendar',
+    #                            redirect_uri='http://example.com/auth_return')
+
+
+    # for heroku
     flow = OAuth2WebServerFlow(client_id='654310236132-9jqqbijnc1bsua10bs8056fq4o1fbnmm.apps.googleusercontent.com',
                            client_secret='zKXijCUymadRKVcV5sr3SL3c',
                            scope='https://picasaweb.google.com/data/',
@@ -188,7 +197,8 @@ def create_mosaic(request):
                     f = io.BytesIO(urllib.request.urlopen(images_urls).read())
                     img = Image.open(f)
                     resize_im = img.resize((int(300),int(200)))
-                    resize_im.save(new_dir_path + str(i) + ".jpg","JPEG")
+                    m = resize_im.convert("RGB")
+                    m.save(new_dir_path + str(i) + ".jpg","JPEG")
 
                 data_list = []
                 for image_name in os.listdir(new_dir_path):
@@ -231,13 +241,14 @@ def create_mosaic(request):
 
                 mosaic_icon_im.save(BASE_DIR + "/static/mosaic_app/images/mosaic_arts/" + datetime_for_path + ".png", "PNG")
                 shutil.rmtree(new_dir_path)
-
+                
 
                 m = MosaicArtInfo.objects.create(user_id=request.user.id)
                 g = ImageFile(open(BASE_DIR + "/static/mosaic_app/images/mosaic_arts/" + datetime_for_path + ".png","rb"))
                 m.mosaic_art.save( datetime_for_path +'.png',g)
                         # m.user_id.save(request.user.id)
                 m.save()
+                os.remove(BASE_DIR + "/static/mosaic_app/images/mosaic_arts/" + datetime_for_path + ".png")
                 return redirect(my_page)  
                   
     else:
