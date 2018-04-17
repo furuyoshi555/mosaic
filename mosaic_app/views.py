@@ -239,16 +239,16 @@ def create_mosaic(request):
                         mosaic_icon_im.paste(area_im, (left//DOT_AREA_WIDTH_SIDE * THUMBNAIL_WIDTH_SIDE,
                                                                 top//DOT_AREA_HEIGHT_SIDE * THUMBNAIL_HEIGHT_SIDE))
 
-                mosaic_icon_im.save(BASE_DIR + "/static/mosaic_app/images/mosaic_arts/" + datetime_for_path + ".png", "PNG")
+                mosaic_icon_im.save(BASE_DIR + "/static/mosaic_app/images/" + datetime_for_path + ".png", "PNG")
                 shutil.rmtree(new_dir_path)
                 
 
                 m = MosaicArtInfo.objects.create(user_id=request.user.id)
-                g = ImageFile(open(BASE_DIR + "/static/mosaic_app/images/mosaic_arts/" + datetime_for_path + ".png","rb"))
+                g = ImageFile(open(BASE_DIR + "/static/mosaic_app/images/" + datetime_for_path + ".png","rb"))
                 m.mosaic_art.save( datetime_for_path +'.png',g)
                         # m.user_id.save(request.user.id)
                 m.save()
-                os.remove(BASE_DIR + "/static/mosaic_app/images/mosaic_arts/" + datetime_for_path + ".png")
+                os.remove(BASE_DIR + "/static/mosaic_app/images/" + datetime_for_path + ".png")
                 return redirect(my_page)  
                   
     else:
