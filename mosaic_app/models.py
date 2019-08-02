@@ -6,7 +6,7 @@ from datetime import datetime
 class UserProfileInfo(models.Model):
 
     user = models.OneToOneField(User,on_delete=models.CASCADE, related_name="profile")
-    
+
 
 class MainImageInfo(models.Model):
 

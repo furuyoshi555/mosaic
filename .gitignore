@@ -2,3 +2,7 @@
 venv
 staticfiles
 db.sqlite3
+local_setting.py
+media/main_images/**.jpg
+media/main_images/**.JPG
+media/mosaic_arts/**.png

@@ -72,8 +72,10 @@ def create_mosaic(request):
     DOT_AREA_WIDTH_SIDE = 3
     DOT_AREA_HEIGHT_SIDE = 2
     # THUMBNAIL_WIDTH_SIDE = 240
+    # THUMBNAIL_WIDTH_SIDE = 60
     THUMBNAIL_WIDTH_SIDE = 30
     # THUMBNAIL_HEIGHT_SIDE = 160
+    # THUMBNAIL_HEIGHT_SIDE = 40
     THUMBNAIL_HEIGHT_SIDE = 20
     # 2つの色(R,G,B)の間の最大の距離
     # MAX_COLOR_DISTANCE = 255 ** 2 * 3
@@ -91,24 +93,9 @@ def create_mosaic(request):
     now=datetime.datetime.now()
     datetime_for_path = str(now.year)+str(now.month)+str(now.day)+str(now.hour)+str(now.minute)+str(now.second)
 
-
+    user_choice_album_title = ""
   
 
-    # user_id = request.user.id
-    # request.session["user-id"] = user_id
-
-    user_choice_album_title = ""
-    # get access_token
-
-
-
-    # for local
-    # flow = flow_from_clientsecrets('path_to_directory/client_secrets.json',
-    #                            scope='https://www.googleapis.com/auth/calendar',
-    #                            redirect_uri='http://example.com/auth_return')
-
-
-    # for heroku
     flow = OAuth2WebServerFlow(client_id='654310236132-9jqqbijnc1bsua10bs8056fq4o1fbnmm.apps.googleusercontent.com',
                            client_secret='zKXijCUymadRKVcV5sr3SL3c',
                            scope='https://picasaweb.google.com/data/',
@@ -123,7 +110,7 @@ def create_mosaic(request):
     if request.method == "POST":
             form = AuthorizationTokenForm(data=request.POST)
             if form.is_valid():
-                token = form.cleaned_data["authorization_token"] 
+                token = form.cleaned_data["authorization_token"]
                 credentials = flow.step2_exchange(token)
                 storage = Storage('static/secret/credentials')
                 storage.put(credentials)
@@ -216,13 +203,15 @@ def create_mosaic(request):
                 main_image = main_image.main_image
                 
                 image = Image.open(main_image)
+                # icon_im = image.resize((int(1200),int(800)))
                 icon_im = image.resize((int(300),int(200)))
 
                         # icon_im = Image.open(main_image)
                         # 対象画像の横幅と縦幅
                 icon_im_width, icon_im_height = icon_im.size
 
-                mosaic_icon_im = Image.new('RGBA', (3000, 2000))
+                # mosaic_icon_im = Image.new('RGBA', (24000,16000))
+                mosaic_icon_im = Image.new('RGBA', (3000,2000))
 
                 # 貼り付け作業
                 for left in range(0, icon_im_width, DOT_AREA_WIDTH_SIDE):

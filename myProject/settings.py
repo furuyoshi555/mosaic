@@ -85,11 +85,11 @@ WSGI_APPLICATION = 'myProject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'djangomosaic',
-        'USER': 'root',
-        'PASSWORD': 'sbsbyoshi2578',
-        'HOST': 'localhost',
+        'ENGINE': '',
+        'NAME': '',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',
         'PORT': '',
     }
 }
@@ -169,7 +169,6 @@ AUTHENTICATION_BACKENDS = (
  'social_core.backends.google.GoogleOAuth2',  # for Google authentication
  'social_core.backends.github.GithubOAuth2',  # for Github authentication
  'social_core.backends.facebook.FacebookOAuth2',  # for Facebook authentication
- 
  'django.contrib.auth.backends.ModelBackend',
 )
 
@@ -188,9 +187,9 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ALLOWED_HOSTS = ['*']
 
 # for heroku
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='654310236132-jarkdd20lhjojpbaho1vss3prl53evpo.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'hXjKA0z87BtOT_AhF_f7xnHU'
+# SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='654310236132-jarkdd20lhjojpbaho1vss3prl53evpo.apps.googleusercontent.com'
+# SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'hXjKA0z87BtOT_AhF_f7xnHU'
 
 # for local
-# SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='654310236132-9jqqbijnc1bsua10bs8056fq4o1fbnmm.apps.googleusercontent.com'
-# SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'zKXijCUymadRKVcV5sr3SL3c'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='654310236132-9jqqbijnc1bsua10bs8056fq4o1fbnmm.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'zKXijCUymadRKVcV5sr3SL3c'
