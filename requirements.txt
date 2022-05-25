@@ -22,7 +22,7 @@ Pillow==5.1.0
 psycopg2==2.7.4
 pyasn1==0.4.2
 pyasn1-modules==0.2.1
-PyJWT==1.6.1
+PyJWT==2.4.0
 pylint==1.8.3
 PyMySQL==0.8.0
 python-social-auth==0.3.6
